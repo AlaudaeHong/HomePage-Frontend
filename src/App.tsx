@@ -8,6 +8,8 @@ import {
 } from "react-router-dom";
 
 import Home from "./static_page/home"
+import About from "./static_page/about"
+
 
 function App() {
   return (
@@ -15,6 +17,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
         </Routes>
       </BrowserRouter>
     </div>

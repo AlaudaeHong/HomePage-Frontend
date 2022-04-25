@@ -7,8 +7,8 @@ import {
   Route
 } from "react-router-dom";
 
-import Home from "./static_page/home"
-import About from "./static_page/about"
+import Home from "./staticPages/home"
+import About from "./staticPages/about"
 
 
 function App() {

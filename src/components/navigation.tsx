@@ -57,14 +57,13 @@ export const NavigationBar = () => {
   };
 
   return (
-    <div>
+    <div style={{ marginBottom: "15px" }}>
       <div>
-
         <Alert severity="info">
           A React.JS & Express.JS Project By Yun Hong. This website
           self-maintained
         </Alert>
-        <AppBar position="static"
+        <AppBar position="fixed"
           color="primary"
           elevation={0}
           sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}

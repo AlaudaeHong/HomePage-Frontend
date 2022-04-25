@@ -46,7 +46,7 @@ function Resume() {
         component="div"
         sx={{ ml: 2, mr: 2 }}
       >Resume</Typography>
-      <img src={process.env.PUBLIC_URL + '/about/Resume.jpg'} width="100%" />
+      <img src={process.env.PUBLIC_URL + '/about/Resume.jpg'} alt="My Resume" width="100%" />
     </>
   );
 }

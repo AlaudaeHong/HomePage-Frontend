@@ -12,6 +12,10 @@ import {
   Button
 } from '@mui/material';
 
+import { useAppSelector, useAppDispatch } from "../store/hooks"
+
+import { selectAuthStatus, selectUser } from "../features/auth/authSlice"
+
 const naviTags = {
   "Home": "/",
   "About Me": "/about",
@@ -19,32 +23,28 @@ const naviTags = {
 }
 
 export const NavigationBar = () => {
-  // const user = useSelector((state) => state.auth.user);
-  // const authStatus = useSelector((state) => state.auth.status);
+  const user = useAppSelector(selectUser);
+  const authStatus = useAppSelector(selectAuthStatus);
 
-  // const [authurl, setAuthurl] = useState("");
-  // const [username, setUsername] = useState("");
-  // const [authaction, setAuthAction] = useState("");
+  const [authurl, setAuthurl] = useState("");
+  const [username, setUsername] = useState("");
+  const [authaction, setAuthAction] = useState("");
 
   var moreOptions = <></>;
 
-  // useEffect(() => {
-  //     if (authStatus === "loaded") {
-  //         if (user.userId === null) {
-  //             setUsername("Guest");
-  //             setAuthurl("/login");
-  //             setAuthAction("Log in");
-  //         } else {
-  //             setUsername(user.username);
-  //             setAuthurl("/logout");
-  //             setAuthAction("Log out");
-  //         }
-  //     }
-  // }, [authStatus, user]);
-
-  // if (username !== "Guest") {
-  //     moreOptions = <Dropdown.Item href="/setting">Setting</Dropdown.Item>;
-  // }
+  useEffect(() => {
+    if (authStatus === "loaded") {
+      if (!user.userId || user.userId === "") {
+        setUsername("Guest");
+        setAuthurl("/login");
+        setAuthAction("Log in");
+      } else {
+        setUsername(user.username);
+        setAuthurl("/logout");
+        setAuthAction("Log out");
+      }
+    }
+  }, [authStatus, user]);
 
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
@@ -97,7 +97,7 @@ export const NavigationBar = () => {
                 onClick={handleOpenUserMenu}
                 color="inherit"
               >
-                Hello Guest
+                Hello {username}
               </Button>
               <Menu
                 sx={{ mt: '45px' }}
@@ -118,11 +118,11 @@ export const NavigationBar = () => {
                 <MenuItem>
                   <Link variant="button"
                     color="text.primary"
-                    href="/"
+                    href={authurl}
                     underline='none'
                     sx={{ my: 1, mx: 1.5 }}
                   >
-                    Login
+                    {authaction}
                   </Link>
                 </MenuItem>
               </Menu>

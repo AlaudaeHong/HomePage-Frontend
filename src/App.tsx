@@ -13,6 +13,7 @@ import About from "./staticPages/about"
 import { useAppDispatch, useAppSelector } from './store/hooks';
 import { fetchAuthUser, resetCheckByTime, selectAuthStatus, selectUser } from './features/auth/authSlice';
 import Login from './staticPages/login';
+import Logout from './staticPages/logout';
 
 function App() {
 
@@ -56,6 +57,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/login" element={loggedIn ? <Navigate to="/" /> : <Login />} />
+          <Route path='/logout' element={<Logout />}/>
           {/* <Route path="/login" element={<Login />} /> */}
         </Routes>
       </BrowserRouter>

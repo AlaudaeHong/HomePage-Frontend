@@ -96,7 +96,7 @@ const AuthSlice = createSlice({
       })
       .addCase(logoutAuthUser.fulfilled, (state, action) => {
         state.status = "idle";
-        state.user = action.payload;
+        state.user = initialState.user;
       })
   },
 })

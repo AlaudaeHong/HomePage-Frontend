@@ -1,9 +1,9 @@
-import React, { Component, Props, useState } from "react";
+import React, { useState } from "react";
 
-import { loginAuthUser, selectAuthStatus, selectUser } from "./authSlice"
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { loginAuthUser } from "./authSlice"
+import { useAppDispatch } from '../../store/hooks';
 
-import { Avatar, Button, Checkbox, Container, FormControlLabel, Paper, TextField, Typography } from "@mui/material"
+import { Avatar, Button, Container, TextField, Typography } from "@mui/material"
 import { Box } from "@mui/system";
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
@@ -57,10 +57,10 @@ export const LoginUserPage = () => {
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              id="username"
+              label="User Name"
+              name="username"
+              autoComplete="username"
               autoFocus
               onChange={onUsernameChanged}
               value={username}

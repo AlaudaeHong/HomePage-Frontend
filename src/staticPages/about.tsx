@@ -82,6 +82,4 @@ class About extends Component<{}, { activeItem: string }> {
   }
 }
 
-
-
 export default About;

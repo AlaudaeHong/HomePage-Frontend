@@ -8,34 +8,10 @@ import {
   MenuList,
   MenuItem
 } from '@mui/material';
-
-import ReactMarkdown from "react-markdown";
-import remarkGfm from 'remark-gfm'
-
-import { NavigationBar } from "../components/navigation";
 import { Box } from "@mui/system";
 
-class StudentBio extends Component<any, any> {
-  constructor(props: any) {
-    super(props);
-    this.state = {
-      content: ""
-    }
-  }
-
-  componentDidMount() {
-    fetch(process.env.PUBLIC_URL + "/about/bio_student.md")
-      .then((r) => r.text())
-      .then((text) => this.setState({ content: text }));
-
-  }
-
-  render() {
-    return <>
-      <ReactMarkdown children={this.state.content} remarkPlugins={[remarkGfm]} />
-    </>
-  }
-}
+import { NavigationBar } from "../components/navigation";
+import StaticMarkDown from "../components/staticMarkdown";
 
 function Resume() {
   return (
@@ -58,7 +34,7 @@ const tabs: { [key: string]: { name: string; component: any } } = {
   },
   "studentLife": {
     name: "Student Life",
-    component: <StudentBio />
+    component: <StaticMarkDown filePath="/about/bio_student.md" />
   },
 }
 
@@ -75,18 +51,7 @@ class About extends Component<{}, { activeItem: string }> {
 
   render() {
     return (
-      <div
-        className="background_image"
-        style={{
-          minHeight: "100vh",
-          backgroundPosition: "50% 0%" /* Center the image */,
-          backgroundImage: "url(/imgs/banner.jpg)",
-          backgroundRepeat: "no-repeat",
-          backgroundAttachment: "fixed",
-          backgroundSize:
-            "cover" /* Resize the background image to cover the entire container */,
-        }}
-      >
+      <div>
         <NavigationBar />
         <Container>
           <Grid container spacing={0}>

@@ -1,14 +1,20 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { AppDispatch, AppThunk, RootState } from "../../store/store"
 
+interface User {
+  userId: string,
+  username: string,
+  password: string,
+}
+
 interface AuthState {
-  user: { userId: string, username: string },
+  user: User,
   error: string
   status: string
 }
 
 const initialState: AuthState = {
-  user: { userId: "", username: "" },
+  user: { userId: "", username: "", password: "" },
   error: "",
   status: "idle",
 };
@@ -19,7 +25,7 @@ export const fetchAuthUser = createAsyncThunk("auth/check", async () => {
   return data;
 });
 
-export const loginAuthUser = createAsyncThunk("auth/login", async (user) => {
+export const loginAuthUser = createAsyncThunk("auth/login", async (user: User) => {
   const response = await fetch("/api/auth/login", {
     method: "POST",
     body: JSON.stringify(user),

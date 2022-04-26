@@ -5,6 +5,7 @@
   "dependencies": {
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
+    "@mui/icons-material": "^5.6.2",
     "@mui/material": "^5.2.6",
     "@reduxjs/toolkit": "^1.7.1",
     "@testing-library/jest-dom": "^5.16.1",
@@ -14,6 +15,7 @@
     "@types/node": "^16.11.17",
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
+    "http-proxy-middleware": "^2.0.6",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-markdown": "^7.1.1",
@@ -48,5 +50,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://api.alaudaehong.space"
+  "proxy": "https://api.alaudaehong.space"
 }

@@ -128,7 +128,6 @@ export const NavigationBar = () => {
               </Menu>
             </Box>
           </Toolbar>
-
         </AppBar>
       </div>
     </div >

@@ -57,79 +57,74 @@ export const NavigationBar = () => {
   };
 
   return (
-    <div style={{ marginBottom: "15px" }}>
-      <div>
-        <Alert severity="info">
-          A React.JS & Express.JS Project By Yun Hong. This website
-          self-maintained
-        </Alert>
-        <AppBar position="fixed"
-          color="primary"
-          elevation={0}
-          sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
-        >
-          <Toolbar disableGutters>
-            <Typography
-              variant="h6"
-              noWrap
-              component="div"
-              sx={{ ml: 2, mr: 2 }}
+    <div>
+      <AppBar position="fixed"
+        color="primary"
+        elevation={0}
+        sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
+      >
+        <Toolbar disableGutters>
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{ ml: 2, mr: 2 }}
+          >
+            Welcome to Yun Hong's Space
+          </Typography>
+          <Box sx={{ flexGrow: 1 }}>
+            <nav>
+              {Object.entries(naviTags).map(([tag, link]) =>
+                <Link variant="button"
+                  key={tag}
+                  color="inherit"
+                  underline='none'
+                  href={link}
+                  sx={{ my: 1, mx: 1.5 }}
+                >
+                  {tag}
+                </Link>
+              )}
+            </nav>
+          </Box>
+          <Box sx={{ flexGrow: 0, mr: 2 }}>
+            <Button variant="text"
+              onClick={handleOpenUserMenu}
+              color="inherit"
             >
-              Welcome to Yun Hong's Space
-            </Typography>
-            <Box sx={{ flexGrow: 1 }}>
-              <nav>
-                {Object.entries(naviTags).map(([tag, link]) =>
-                  <Link variant="button"
-                    key={tag}
-                    color="inherit"
-                    underline='none'
-                    href={link}
-                    sx={{ my: 1, mx: 1.5 }}
-                  >
-                    {tag}
-                  </Link>
-                )}
-              </nav>
-            </Box>
-            <Box sx={{ flexGrow: 0, mr: 2 }}>
-              <Button variant="text"
-                onClick={handleOpenUserMenu}
-                color="inherit"
-              >
-                Hello {username}
-              </Button>
-              <Menu
-                sx={{ mt: '45px' }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
-              >
-                <MenuItem>
-                  <Link variant="button"
-                    color="text.primary"
-                    href={authurl}
-                    underline='none'
-                    sx={{ my: 1, mx: 1.5 }}
-                  >
-                    {authaction}
-                  </Link>
-                </MenuItem>
-              </Menu>
-            </Box>
-          </Toolbar>
-        </AppBar>
-      </div>
-    </div >
+              Hello {username}
+            </Button>
+            <Menu
+              sx={{ mt: '45px' }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+              <MenuItem>
+                <Link variant="button"
+                  color="text.primary"
+                  href={authurl}
+                  underline='none'
+                  sx={{ my: 1, mx: 1.5 }}
+                >
+                  {authaction}
+                </Link>
+              </MenuItem>
+            </Menu>
+          </Box>
+        </Toolbar>
+      </AppBar>
+      <Toolbar />
+    </div>
   );
 };

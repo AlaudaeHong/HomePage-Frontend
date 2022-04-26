@@ -8,12 +8,12 @@ import {
   Navigate
 } from "react-router-dom";
 
-import Home from "./staticPages/home"
-import About from "./staticPages/about"
+import Home from "./pages/home"
+import About from "./pages/about"
 import { useAppDispatch, useAppSelector } from './store/hooks';
 import { fetchAuthUser, resetCheckByTime, selectAuthStatus, selectUser } from './features/auth/authSlice';
-import Login from './staticPages/login';
-import Logout from './staticPages/logout';
+import Login from './pages/login';
+import Logout from './pages/logout';
 
 function App() {
 

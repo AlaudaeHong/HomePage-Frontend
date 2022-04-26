@@ -15,7 +15,6 @@ class StaticMarkDown extends Component<any, any> {
     fetch(process.env.PUBLIC_URL + this.props.filePath)
       .then((r) => r.text())
       .then((text) => this.setState({ content: text }));
-
   }
 
   render() {

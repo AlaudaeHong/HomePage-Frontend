@@ -6,7 +6,6 @@ import { LogoutUserPage } from "../features/auth/userLogout";
 class Logout extends Component<any, any> {
   render(): React.ReactNode {
     return <>
-      <NavigationBar />
       <LogoutUserPage />
     </>
   }

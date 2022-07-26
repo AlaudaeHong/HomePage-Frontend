@@ -10,7 +10,6 @@ import {
 } from '@mui/material';
 import { Box } from "@mui/system";
 
-import { NavigationBar } from "../components/navigation";
 import StaticMarkDown from "../components/staticMarkdown";
 
 function Resume() {

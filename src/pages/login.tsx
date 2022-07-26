@@ -6,7 +6,6 @@ import { LoginUserPage } from "../features/auth/userLogin";
 class Login extends Component<any, any> {
   render(): React.ReactNode {
     return <>
-      <NavigationBar />
       <LoginUserPage />
     </>
   }

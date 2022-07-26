@@ -67,7 +67,7 @@ const AuthSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    resetCheck: (state) => {
+    resetCheck: (state: { status: string; }) => {
       state.status = "idle";
     },
   },

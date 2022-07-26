@@ -14,12 +14,15 @@ import { useAppDispatch, useAppSelector } from './store/hooks';
 import { fetchAuthUser, resetCheckByTime, selectAuthStatus, selectUser } from './features/auth/authSlice';
 import Login from './pages/login';
 import Logout from './pages/logout';
+import HomeOtaku from './pages/home-otaku';
+import { fetchUserSetting, selectUserIfOtaku } from './features/user/userSlice';
 
 function App() {
 
   const dispatch = useAppDispatch();
   const user = useAppSelector(selectUser);
   const authStatus = useAppSelector(selectAuthStatus);
+  const userIfOtaku = useAppSelector(selectUserIfOtaku);
 
   let loggedIn = false;
 
@@ -29,6 +32,7 @@ function App() {
 
   useEffect(() => {
     if (authStatus === "idle") dispatch(fetchAuthUser());
+    dispatch(fetchUserSetting());
   }, [authStatus, dispatch]);
 
   if (authStatus === "loaded") {
@@ -43,25 +47,16 @@ function App() {
   console.log(user);
 
   return (
-    <div className="App" style={{
-      minHeight: "100vh",
-      backgroundPosition: "50% 0%" /* Center the image */,
-      backgroundImage: "url(/imgs/banner.jpg)",
-      backgroundRepeat: "no-repeat",
-      backgroundAttachment: "fixed",
-      backgroundSize:
-        "cover" /* Resize the background image to cover the entire container */,
-    }}>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/login" element={loggedIn ? <Navigate to="/" /> : <Login />} />
-          <Route path='/logout' element={<Logout />}/>
-          {/* <Route path="/login" element={<Login />} /> */}
-        </Routes>
-      </BrowserRouter>
-    </div>
+
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={userIfOtaku === "false" ? <Home /> : <HomeOtaku />}>
+          <Route path="about" element={<About />} />
+          <Route path="login" element={loggedIn ? <Navigate to="/" /> : <Login />} />
+          <Route path='logout' element={<Logout />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

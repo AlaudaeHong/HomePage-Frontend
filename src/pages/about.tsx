@@ -52,7 +52,6 @@ class About extends Component<{}, { activeItem: string }> {
   render() {
     return (
       <div>
-        <NavigationBar />
         <Container>
           <Grid container spacing={0}>
             <Grid item xs={10}>
@@ -67,6 +66,7 @@ class About extends Component<{}, { activeItem: string }> {
                 <MenuList>
                   {Object.entries(tabs).map(([id, { name, component }]) =>
                     <MenuItem
+                      key={name}
                       onClick={(event) => this.handleItemClick(event, id)}
                     >
                       {name}

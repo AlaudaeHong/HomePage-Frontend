@@ -9,28 +9,34 @@ import {
   Link,
   Menu,
   MenuItem,
-  Button
+  Button,
+  Switch,
 } from '@mui/material';
 
 import { useAppSelector, useAppDispatch } from "../store/hooks"
 
 import { selectAuthStatus, selectUser } from "../features/auth/authSlice"
+import { selectUserIfOtaku, setOtakuTheme, unsetOtakuTheme } from "../features/user/userSlice";
 
 const naviTags = {
-  "Home": "/",
-  "About Me": "/about",
-  "Files": "/"
+  "Home": "",
+  "About Me": "about",
+  "Files": ""
 }
 
 export const NavigationBar = () => {
   const user = useAppSelector(selectUser);
   const authStatus = useAppSelector(selectAuthStatus);
+  const userIfOtaku = useAppSelector(selectUserIfOtaku);
 
   const [authurl, setAuthurl] = useState("");
   const [username, setUsername] = useState("");
   const [authaction, setAuthAction] = useState("");
+  const [rootPath, setRootPath] = useState("/");
+  const [ifOtaku, setIfOtaku] = useState(true);
+  const [header, setHeader] = useState("Welcome to Yun Hong's Space");
 
-  var moreOptions = <></>;
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (authStatus === "loaded") {
@@ -44,7 +50,18 @@ export const NavigationBar = () => {
         setAuthAction("Log out");
       }
     }
-  }, [authStatus, user]);
+
+    if (userIfOtaku === "true") {
+      setRootPath("/");
+      setHeader("Alaudae Hong!?");
+      setIfOtaku(true);
+    } else {
+      setRootPath("/");
+      setHeader("Welcome to Yun Hong's Space");
+      setIfOtaku(false);
+    }
+
+  }, [authStatus, user, userIfOtaku]);
 
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
@@ -55,6 +72,17 @@ export const NavigationBar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const handleSwitchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (ifOtaku) {
+      setIfOtaku(false);
+      dispatch(unsetOtakuTheme());
+    }
+    else {
+      setIfOtaku(true);
+      dispatch(setOtakuTheme());
+    }
+  }
 
   return (
     <div>
@@ -70,7 +98,7 @@ export const NavigationBar = () => {
             component="div"
             sx={{ ml: 2, mr: 2 }}
           >
-            Welcome to Yun Hong's Space
+            {header}
           </Typography>
           <Box sx={{ flexGrow: 1 }}>
             <nav>
@@ -79,7 +107,7 @@ export const NavigationBar = () => {
                   key={tag}
                   color="inherit"
                   underline='none'
-                  href={link}
+                  href={rootPath + link}
                   sx={{ my: 1, mx: 1.5 }}
                 >
                   {tag}
@@ -88,6 +116,13 @@ export const NavigationBar = () => {
             </nav>
           </Box>
           <Box sx={{ flexGrow: 0, mr: 2 }}>
+            <Switch
+              name="otaku-switch"
+              color="default"
+              inputProps={{ 'aria-label': 'checkbox with default color' }}
+              checked={ifOtaku}
+              onChange={handleSwitchChange}
+            />
             <Button variant="text"
               onClick={handleOpenUserMenu}
               color="inherit"

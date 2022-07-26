@@ -11,6 +11,8 @@ import {
   MenuItem,
   Button,
   Switch,
+  FormControlLabel,
+  FormGroup,
 } from '@mui/material';
 
 import { useAppSelector, useAppDispatch } from "../store/hooks"
@@ -116,13 +118,7 @@ export const NavigationBar = () => {
             </nav>
           </Box>
           <Box sx={{ flexGrow: 0, mr: 2 }}>
-            <Switch
-              name="otaku-switch"
-              color="default"
-              inputProps={{ 'aria-label': 'checkbox with default color' }}
-              checked={ifOtaku}
-              onChange={handleSwitchChange}
-            />
+
             <Button variant="text"
               onClick={handleOpenUserMenu}
               color="inherit"
@@ -145,6 +141,20 @@ export const NavigationBar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
+              <MenuItem>
+                <FormGroup row>
+                  <FormControlLabel
+                    control={<Switch
+                      name="otaku-switch"
+                      color="default"
+                      inputProps={{ 'aria-label': 'checkbox with default color' }}
+                      checked={ifOtaku}
+                      onChange={handleSwitchChange}
+                    />}
+                    label="Don Touch"
+                  />
+                </FormGroup>
+              </MenuItem>
               <MenuItem>
                 <Link variant="button"
                   color="text.primary"

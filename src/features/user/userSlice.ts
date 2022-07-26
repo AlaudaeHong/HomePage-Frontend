@@ -13,7 +13,7 @@ const initialState: ThemeState = {
 
 export const fetchUserSetting = createAsyncThunk("user/getsetting", async () => {
   // console.log("if otaku:" + localStorage.getItem("otaku"));
-  return {if_otaku: localStorage.getItem("otaku")};
+  return {if_otaku: localStorage.getItem("otaku") ? localStorage.getItem("otaku") : "false"};
 });
 
 export const UserSlice = createSlice({

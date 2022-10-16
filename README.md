@@ -1,5 +1,9 @@
 # TODO
 
+Add file upload functionality
+
+# Finished
+
 Add state of theme (work & personal)
 
 # Comment

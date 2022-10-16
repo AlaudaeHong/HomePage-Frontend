@@ -28,7 +28,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && rm -r ~/AlaudaeHong.github.io/* && cp -r build/* ~/AlaudaeHong.github.io/",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -50,5 +50,6 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://api.alaudaehong.space"
+  "proxy": "https://api.alaudaehong.space",
+  "proxyFake": "http://localhost:10000"
 }

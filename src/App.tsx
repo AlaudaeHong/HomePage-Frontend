@@ -16,6 +16,7 @@ import Login from './pages/login';
 import Logout from './pages/logout';
 import HomeOtaku from './pages/home-otaku';
 import { fetchUserSetting, selectUserIfOtaku } from './features/user/userSlice';
+import { FileListPage } from './features/file/fileListPage';
 
 function App() {
 
@@ -54,6 +55,7 @@ function App() {
           <Route path="about" element={<About />} />
           <Route path="login" element={loggedIn ? <Navigate to="/" /> : <Login />} />
           <Route path='logout' element={<Logout />} />
+          <Route path="file" element={<FileListPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

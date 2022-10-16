@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import {
   Box,
   AppBar,
-  Alert,
   Toolbar,
   Typography,
   Link,
@@ -23,7 +22,7 @@ import { selectUserIfOtaku, setOtakuTheme, unsetOtakuTheme } from "../features/u
 const naviTags = {
   "Home": "",
   "About Me": "about",
-  "Files": ""
+  "Files": "file"
 }
 
 export const NavigationBar = () => {
